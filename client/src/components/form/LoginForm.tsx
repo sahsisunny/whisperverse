@@ -5,11 +5,26 @@ import LoginImage from '../../../public/login.jpg'
 import Image from 'next/image'
 import { API } from '@/constants'
 import Link from 'next/link'
-import {fetchLoginByUsername} from '@/utils/fetchLogin'
-
+import {
+   useLoginUsernameMutation,
+   useLoginEmailMutation,
+} from '@/app/services/userApi'
+import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
+import Router from 'next/router'
 function LoginForm() {
    const [inputType, setInputType] = useState('email') // Default to email
-
+   const [
+      emailLogin,
+      { isLoading: emailLoginLoading, error: emailLoginError },
+   ] = useLoginEmailMutation()
+   const [
+      usernameLogin,
+      { isLoading: usernameLoginLoading, error: usernameLoginError },
+   ] = useLoginUsernameMutation()
+   const { isLoggedin } = useIsAuthenticated()
+   if (isLoggedin) {
+      Router.push('/')
+   }
    const toggleInputType = () => {
       setInputType((prevType) => (prevType === 'email' ? 'username' : 'email'))
    }
@@ -21,7 +36,14 @@ function LoginForm() {
       const data = new FormData(e.currentTarget)
       const email = data.get('username') as string
       const password = data.get('password') as string
-      const res = await fetchLoginByUsername(email, password)
+      emailLogin({ email, password })
+         .unwrap()
+         .then((originalPromiseResult) => {
+            window.location.reload()
+         })
+         .catch((rejectedValueOrSerializedError) => {
+            console.log(rejectedValueOrSerializedError)
+         })
    }
 
    const handleSubmitwithUsername = async (
@@ -31,7 +53,14 @@ function LoginForm() {
       const data = new FormData(e.currentTarget)
       const username = data.get('username') as string
       const password = data.get('password') as string
-      const res = await fetchLoginByUsername(username, password)
+      usernameLogin({ username, password })
+         .unwrap()
+         .then((originalPromiseResult) => {
+            window.location.reload()
+         })
+         .catch((rejectedValueOrSerializedError) => {
+            console.log(rejectedValueOrSerializedError)
+         })
    }
 
    return (

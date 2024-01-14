@@ -1,7 +1,7 @@
-import { fetchSelfData } from "@/utils/fetchSelfData"
+import { useGetSelfQuery } from '@/app/services/userApi'
 
-export const useIsAuthenticated =async  () => {
-   const data = await fetchSelfData()
-   const isLoggedin = data?.username ? true : false
-   return { isLoggedin, data }
+export const useIsAuthenticated = () => {
+   const { data, isLoading, isError } = useGetSelfQuery()
+   const isLoggedin = !isLoading && !isError && !!data
+   return { isLoggedin, data, isLoading, isError }
 }

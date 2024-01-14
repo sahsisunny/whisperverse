@@ -21,6 +21,7 @@ const Toast: FC<ToastType> = ({
    onDismiss,
    type,
 }) => {
+   console.log('toast')
    useEffect(() => {
       if (isVisible) {
          const timer = setTimeout(() => {

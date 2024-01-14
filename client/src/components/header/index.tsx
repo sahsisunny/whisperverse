@@ -7,10 +7,22 @@ import { TfiLayoutListThumbAlt } from 'react-icons/tfi'
 
 import LogoImage from '../../../public/WhisperVerse.webp'
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
+import { useLogoutMutation } from '@/app/services/userApi'
 import { API } from '@/constants'
 
 function Header() {
-   const  {isLoggedin} = useIsAuthenticated()
+   const { isLoggedin } = useIsAuthenticated()
+   const [logout, { isLoading: logoutLoading }] = useLogoutMutation()
+   const handleLogout = async () => {
+      logout()
+         .unwrap()
+         .then(() => {
+            window.location.reload()
+         })
+         .catch((rejectedValueOrSerializedError) => {
+            console.log(rejectedValueOrSerializedError)
+         })
+   }
    return (
       <header className="w-full sticky top-0  z-50  h-[10vh]">
          <div className="w-full mx-auto flex justify-between px-4 bg-white text-black py-2 rounded-b-[35px]  ">
@@ -80,12 +92,12 @@ function Header() {
             </div>
             {isLoggedin ? (
                <nav className="flex gap-4 text-sm  items-center">
-                  <Link
-                     href={`${API}/logout`}
+                  <button
+                     onClick={handleLogout}
                      className=" py-3 px-5 hover:bg-gray-200 rounded-[10px] bg-gray-100"
                   >
                      Logout
-                  </Link>
+                  </button>
                </nav>
             ) : (
                <nav className="flex gap-2 text-sm text-black items-center">
