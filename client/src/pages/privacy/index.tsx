@@ -18,8 +18,6 @@ export default function Privacy() {
                   privacy practices below.
                </p>
 
-               {/* Add more sections based on your data collection and usage */}
-
                <h2 className="text-xl font-bold mt-6">
                   Information We Collect
                </h2>
@@ -41,7 +39,6 @@ export default function Privacy() {
                         <FaLink className="inline-block mr-2" /> Links added via
                         Google sign-in
                      </li>
-                     {/* Add any additional information you collect */}
                   </ul>
                </p>
 
@@ -58,11 +55,8 @@ export default function Privacy() {
                      </li>
                      <li>Managing and securing your user account</li>
                      <li>Enhancing and optimizing our services</li>
-                     {/* Add any other purposes */}
                   </ul>
                </p>
-
-               {/* Add more sections as needed */}
 
                <h2 className="text-xl font-bold mt-6">Your Choices</h2>
                <p>
@@ -72,7 +66,6 @@ export default function Privacy() {
                         Access, update, or delete your personal information
                      </li>
                      <li>Opt-out of specific data collection practices</li>
-                     {/* Add any other choices */}
                   </ul>
                </p>
 

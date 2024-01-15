@@ -19,15 +19,12 @@ export default function TermsOfService() {
                   WhisperVerse.
                </p>
 
-               {/* Add more sections based on your terms and conditions */}
-
                <h2 className="text-xl font-bold mt-6">User Conduct</h2>
                <p>
                   When using WhisperVerse, you agree to:
                   <ul className="">
                      <li>Use WhisperVerse only for lawful purposes</li>
                      <li>Respect the rights and privacy of others</li>
-                     {/* Add any other user conduct guidelines */}
                   </ul>
                </p>
 
@@ -38,8 +35,6 @@ export default function TermsOfService() {
                   copyright, trademark, patent, trade secret, and other
                   intellectual property or proprietary rights laws.
                </p>
-
-               {/* Add more sections as needed */}
 
                <h2 className="text-xl font-bold mt-6">Disclaimer</h2>
                <p>

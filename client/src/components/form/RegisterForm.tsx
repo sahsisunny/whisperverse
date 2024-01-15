@@ -83,11 +83,10 @@ function RegisterForm() {
          registerUser(data)
             .unwrap()
             .then(() => {
-               window.location.reload()
+               Router.push('/')
             })
             .catch((error) => {
                console.log(error)
-               // if error message have email word in it, then it's email error
                if (error.data.message.includes('email')) {
                } else if (error.data.message.includes('username')) {
                   newErrors.username = error.data.message

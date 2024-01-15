@@ -4,6 +4,17 @@ type ISecretsResponse = {
    _id: string
    message: string
    userId: string
+   timestamp: string
+}
+
+type IAllSecretsResponse = {
+   message: string
+   secrets: {
+      _id: string
+      secret: string
+      userId: string
+      timestamp: string
+   }[]
 }
 
 type ISecretsPayload = {
@@ -13,7 +24,7 @@ type ISecretsPayload = {
 
 export const secretsApi = api.injectEndpoints({
    endpoints: (builder) => ({
-      getAllSecrets: builder.query<ISecretsResponse[], void>({
+      getAllSecrets: builder.query<IAllSecretsResponse, void>({
          query: () => '/secrets',
          providesTags: ['Secrets'],
       }),

@@ -38,12 +38,12 @@ function LoginForm() {
    ) => {
       e.preventDefault()
       const data = new FormData(e.currentTarget)
-      const email = data.get('username') as string
+      const email = data.get('email') as string
       const password = data.get('password') as string
       emailLogin({ email, password })
          .unwrap()
-         .then((originalPromiseResult) => {
-            window.location.reload()
+         .then(() => {
+            Router.push('/')
          })
          .catch((rejectedValueOrSerializedError) => {
             console.log(rejectedValueOrSerializedError)
@@ -59,8 +59,8 @@ function LoginForm() {
       const password = data.get('password') as string
       usernameLogin({ username, password })
          .unwrap()
-         .then((originalPromiseResult) => {
-            window.location.reload()
+         .then(() => {
+            Router.push('/')
          })
          .catch((rejectedValueOrSerializedError) => {
             console.log(rejectedValueOrSerializedError)

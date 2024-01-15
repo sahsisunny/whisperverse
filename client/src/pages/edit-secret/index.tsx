@@ -5,7 +5,7 @@ import {
    useDeleteSecretMutation,
    useGetSecretQuery,
 } from '@/app/services/secretsApi'
-import { useGetSelfQuery } from '@/app/services/userApi'
+import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
 import Button from '@/components/Button'
 import Layout from '@/components/Layout'
 import Loader from '@/components/Loader'
@@ -14,7 +14,11 @@ import NotLoggedIn from '@/components/NotLoggedIn'
 export default function EditSecret() {
    const DELETE_MUTATION = useDeleteSecretMutation()
    const ADD_OR_UPDATE_MUTATION = useAddOrUpdateSecretMutation()
-   const { data: userData, isLoading: userIsLoading } = useGetSelfQuery()
+   const {
+      data: userData,
+      isLoading: userIsLoading,
+      isLoggedin,
+   } = useIsAuthenticated()
    const { data: secretData, isLoading } = useGetSecretQuery(
       userData?.id || '',
       { skip: !userData?.id },
@@ -26,8 +30,8 @@ export default function EditSecret() {
    const [secretMessage, setSecretMessage] = useState(secretData?.message || '')
    const [showTextArea, setShowTextArea] = useState(false)
 
+   if (!isLoggedin) return <NotLoggedIn />
    if (isLoading || userIsLoading) return <Loader />
-   if (userData === undefined) return <NotLoggedIn />
 
    const handleAddOrUpdateSecret = async (
       e: React.FormEvent<HTMLFormElement>,
@@ -41,9 +45,9 @@ export default function EditSecret() {
          await addOrupdateSecret(data)
             .unwrap()
             .then(async () => {
-               await setUpdatedSecret('')
-               await setSecretMessage(secretText)
-               await setShowTextArea(false)
+               setUpdatedSecret('')
+               setSecretMessage(secretText)
+               setShowTextArea(false)
             })
             .catch((err) => console.log(err))
       }
