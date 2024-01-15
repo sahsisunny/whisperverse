@@ -3,13 +3,10 @@ import { usePathname } from 'next/navigation'
 import React from 'react'
 import { IconType } from 'react-icons'
 import { BiHomeAlt, BiSolidHome } from 'react-icons/bi'
-import {
-   IoSettings,
-   IoSettingsOutline,
-   IoShapesOutline,
-   IoShapesSharp,
-} from 'react-icons/io5'
-import { TfiLayoutListThumb, TfiLayoutListThumbAlt } from 'react-icons/tfi'
+
+import { FaUserCircle, FaRegUserCircle } from 'react-icons/fa'
+import { FaUserSecret } from 'react-icons/fa6'
+import { LiaUserSecretSolid } from 'react-icons/lia'
 
 interface TabConfig {
    label: string
@@ -26,23 +23,17 @@ const tabs: TabConfig[] = [
       activeIcon: BiSolidHome,
    },
    {
-      label: 'Links',
-      icon: TfiLayoutListThumb,
-      href: '/links',
-      activeIcon: TfiLayoutListThumbAlt,
-   },
-   {
-      label: 'Appearance',
-      icon: IoShapesOutline,
-      href: '/appearance',
-      activeIcon: IoShapesSharp,
+      label: 'My Secret',
+      icon: LiaUserSecretSolid,
+      href: '/secret',
+      activeIcon: FaUserSecret,
    },
 
    {
-      label: 'Settings',
-      icon: IoSettingsOutline,
-      href: '/settings',
-      activeIcon: IoSettings,
+      label: 'Profile',
+      icon: FaRegUserCircle,
+      href: '/profile',
+      activeIcon: FaUserCircle,
    },
 ]
 

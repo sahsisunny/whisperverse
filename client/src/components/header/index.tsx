@@ -42,32 +42,32 @@ function Header() {
 
                   <span>WhisperVerse</span>
                </Link>
-               <nav className="md:flex items-center text-black font-semibold   text-sm hidden ">
+               <nav className="md:flex items-center text-black font-semibold text-sm hidden ">
                   <Link
                      href="/"
                      className="flex gap-2 py-3 px-5 hover:bg-gray-100 rounded-[10px]"
                   >
-                     <FaUserSecret className="text-xl" />
+                     <GiSecretBook className="text-xl" />
                      All Secrets
                   </Link>
                   <Link
-                     href="/edit-secret"
+                     href="/secret"
                      className="flex gap-2 py-3 px-5 hover:bg-gray-100 rounded-[10px]"
                   >
-                     <GiSecretBook className="text-xl" />
-                     Edit Secret
+                     <FaUserSecret className="text-xl" />
+                     My Secret
+                  </Link>
+                  <Link
+                     href="/profile"
+                     className="flex gap-2 py-3 px-5 hover:bg-gray-100 rounded-[10px]"
+                  >
+                     <CgProfile className="text-xl" />
+                     Profile
                   </Link>
                </nav>
             </div>
             {isLoggedin ? (
                <nav className="flex gap-4 text-sm  items-center">
-                  <Link
-                     href="/profile"
-                     className=" py-3 px-5 hover:bg-gray-200 rounded-[10px] bg-gray-100 flex justify-center gap-2"
-                  >
-                     <CgProfile className="text-xl" />
-                     Profile
-                  </Link>
                   <button
                      onClick={handleLogout}
                      className=" py-3 px-5 hover:bg-gray-200 rounded-[10px] bg-gray-100"

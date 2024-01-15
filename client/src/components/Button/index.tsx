@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
    return (
       <button
          onClick={handleClick}
-         className={`bg-blue-500 text-white py-2 px-4 rounded relative ${
+         className={`flex justify-center items-center gap-2 bg-blue-500 text-white py-2 px-4 rounded relative ${
             isLoading ? 'opacity-50 cursor-not-allowed' : ''
          }`}
          disabled={isLoading}

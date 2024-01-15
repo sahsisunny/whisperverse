@@ -26,6 +26,7 @@ export default function EditSecret() {
    const [deleteSecret] = DELETE_MUTATION
    const [addOrupdateSecret, { isLoading: isAddingOrUpdating }] =
       ADD_OR_UPDATE_MUTATION
+
    const [updatedSecret, setUpdatedSecret] = useState(secretData?.message || '')
    const [secretMessage, setSecretMessage] = useState(secretData?.message || '')
    const [showTextArea, setShowTextArea] = useState(false)

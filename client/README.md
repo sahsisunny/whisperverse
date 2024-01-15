@@ -35,7 +35,6 @@ The frontend development server will start on `http://localhost:3000`.
 
 The API constants are stored in the `constants` file. If you need to update the API endpoints or make any modifications related to API communication, you can find and edit them in this file.
 
-
 Ensure that the `API` matches the URL where your Whisperverse backend is hosted.
 
 Now, the Whisperverse Frontend is ready to be explored and modified as needed. If you encounter any issues or have questions, feel free to reach out!
