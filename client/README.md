@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Whisperverse Frontend
 
-## Getting Started
+Welcome to the Whisperverse Frontend! This is built with Next.js and TypeScript, providing a dynamic and responsive user interface for the Whisperverse application.
 
-First, run the development server:
+## Overview
+
+The Whisperverse frontend interacts with the backend to enable users to post secrets and explore secrets shared by others. It's designed using Tailwind CSS for a clean and responsive layout and uses RTK Query for efficient data fetching and state management.
+
+## Cloning
+
+To clone the frontend repository, use the following command:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/sahsisunny/whisperverse.git
+cd whisperverse/client
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Install dependencies:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+yarn
+```
 
-## Learn More
+2. Run the frontend:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+yarn dev
+```
 
--  [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--  [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The frontend development server will start on `http://localhost:3000`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## API Constants
 
-## Deploy on Vercel
+The API constants are stored in the `constants` file. If you need to update the API endpoints or make any modifications related to API communication, you can find and edit them in this file.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Ensure that the `API` matches the URL where your Whisperverse backend is hosted.
+
+Now, the Whisperverse Frontend is ready to be explored and modified as needed. If you encounter any issues or have questions, feel free to reach out!
