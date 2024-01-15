@@ -19,8 +19,7 @@ const app = express()
 
 app.use(
    cors({
-      origin:
-         /https?:\/\/([a-z0-9]+[.])*netlify[.]app|https?:\/\/([a-z0-9]+[.])*netlify[.]com|https?:\/\/localhost(:[0-9]+)?/,
+      origin: process.env.CORS_ORIGIN,
       credentials: true,
    }),
 )
