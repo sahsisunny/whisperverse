@@ -1,15 +1,17 @@
 import express from 'express'
+
 import {
    createPasswordResetModel,
-   updatePasswordResetModel,
-   getPasswordResetByUserId,
    deletePasswordResetModel,
+   getPasswordResetByUserId,
+   updatePasswordResetModel,
 } from '../models/passwordReset'
 import {
    getUserIdByUsernameOrEmailModel,
    updateUserPasswordModel,
 } from '../models/user'
-import { generateHash, verifyJWT, generateResetToken } from '../utils/auth'
+import { generateHash, generateResetToken, verifyJWT } from '../utils/auth'
+
 /**
  * @param req : userId
  * @param res : message, passwordReset (userId, resetToken)

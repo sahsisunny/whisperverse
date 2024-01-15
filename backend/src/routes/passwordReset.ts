@@ -1,12 +1,12 @@
 import express from 'express'
-import { authinticate } from '../middlewares/authinticate'
 
 import {
    createPasswordResetController,
-   getPasswordResetByTokenController,
    deletePasswordResetController,
+   getPasswordResetByTokenController,
    passwordResetController,
 } from '../controller/passwordReset'
+import { authinticate } from '../middlewares/authinticate'
 import { passwordResetValidator } from '../middlewares/passwordReset'
 
 export default (router: express.Router) => {

@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
+import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
 import { IUserPayloadForToken } from 'types/user'
-import crypto from 'crypto'
 
 export const generateHash = async function (password: string) {
    try {

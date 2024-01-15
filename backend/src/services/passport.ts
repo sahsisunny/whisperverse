@@ -1,12 +1,14 @@
-import {
-   getUserByGoogleIdModel,
-   createUserModel,
-   UserModel,
-} from '../models/user'
+import dotenv from 'dotenv'
 import passport from 'passport'
 import { Strategy as GoogleStrategy } from 'passport-google-oauth2'
+
+import {
+   createUserModel,
+   getUserByGoogleIdModel,
+   UserModel,
+} from '../models/user'
 import { IUser } from '../types/user'
-import dotenv from 'dotenv'
+
 dotenv.config()
 
 const clientID = process.env.GOOGLE_CLIENT_ID

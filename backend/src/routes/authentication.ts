@@ -1,11 +1,12 @@
 import express from 'express'
+
 import {
+   getSelfController,
+   googleAuthCallbackController,
+   googleAuthController,
    loginController,
    logoutController,
    registerController,
-   getSelfController,
-   googleAuthController,
-   googleAuthCallbackController,
 } from '../controller/authentication'
 import {
    registerUserValidator,

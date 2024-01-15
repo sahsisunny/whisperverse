@@ -1,5 +1,4 @@
 import express from 'express'
-import { verifyJWT } from '../utils/auth'
 
 import {
    createSecretModel,
@@ -8,6 +7,7 @@ import {
    getSecretByUserIdModel,
    updateSecretModel,
 } from '../models/secrets'
+import { verifyJWT } from '../utils/auth'
 
 /**
  * @param req:

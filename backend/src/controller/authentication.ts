@@ -1,19 +1,19 @@
 import express from 'express'
+import { Error } from 'mongoose'
+import { IUser } from 'types/user'
 
 import {
    createUserModel,
    getUserByEmailModel,
    getUserByUsernameModel,
 } from '../models/user'
+import passport from '../services/passport'
 import {
    compareHash,
    generateHash,
    generateJWT,
    verifyJWT,
 } from '../utils/auth'
-import { IUser } from 'types/user'
-import passport from '../services/passport'
-import { Error } from 'mongoose'
 
 /**
  * Register a new user

@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express'
 
 import authentication from './authentication'
-import user from './secrets'
 import passwordReset from './passwordReset'
+import user from './secrets'
 
 const router = express.Router()
 /**

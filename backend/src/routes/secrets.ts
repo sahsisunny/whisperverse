@@ -1,5 +1,4 @@
 import express from 'express'
-import { authinticate } from '../middlewares/authinticate'
 
 import {
    createOrUpdateSecretController,
@@ -7,6 +6,7 @@ import {
    getAllSecretsController,
    getSecretByUserIdController,
 } from '../controller/secrets'
+import { authinticate } from '../middlewares/authinticate'
 import { createSecretValidator } from '../middlewares/secrets'
 
 export default (router: express.Router) => {
