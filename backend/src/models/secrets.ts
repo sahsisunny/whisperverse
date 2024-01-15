@@ -18,7 +18,7 @@ const SecretSchema = new mongoose.Schema({
 export const SecretModel = mongoose.model('Secret', SecretSchema)
 
 export const getAllSecretsModel = async () => {
-   return await SecretModel.aggregate([{ $sample: { size: 1 } }])
+   return await SecretModel.find().sort({ timestamp: -1 })
 }
 
 export const getSecretByUserIdModel = async (userId: string) => {
