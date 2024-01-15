@@ -2,17 +2,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { IoMdSettings } from 'react-icons/io'
-import { IoShapesOutline } from 'react-icons/io5'
-import { TfiLayoutListThumbAlt } from 'react-icons/tfi'
+import { FaUserSecret } from 'react-icons/fa6'
+import { TbLogout } from 'react-icons/tb'
+import { GiSecretBook } from 'react-icons/gi'
 
 import LogoImage from '../../../public/WhisperVerse.webp'
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
 import { useLogoutMutation } from '@/app/services/userApi'
-import { API } from '@/constants'
+import { CgProfile } from 'react-icons/cg'
 
 function Header() {
    const { isLoggedin } = useIsAuthenticated()
-   const [logout, { isLoading: logoutLoading }] = useLogoutMutation()
+   const [logout] = useLogoutMutation()
    const handleLogout = async () => {
       logout()
          .unwrap()
@@ -42,61 +43,36 @@ function Header() {
                   <span>WhisperVerse</span>
                </Link>
                <nav className="md:flex items-center text-black font-semibold   text-sm hidden ">
-                  {isLoggedin ? (
-                     <>
-                        <Link
-                           href="/links"
-                           className="flex gap-2 py-3 px-5 hover:bg-gray-100 rounded-[10px]"
-                        >
-                           <TfiLayoutListThumbAlt className="text-xl" />
-                           Links
-                        </Link>
-                        <Link
-                           href="/appearance"
-                           className="flex gap-2 py-3 px-5 hover:bg-gray-100 rounded-[10px]"
-                        >
-                           <IoShapesOutline className="text-xl" />
-                           Appearance
-                        </Link>
-                        <Link
-                           href="/settings"
-                           className="flex gap-2 py-3 px-5 hover:bg-gray-100 rounded-[10px]"
-                        >
-                           <IoMdSettings className="text-xl" />
-                           Settings
-                        </Link>
-                     </>
-                  ) : (
-                     <>
-                        <Link
-                           href="/about"
-                           className=" py-3 px-5 hover:bg-gray-100 rounded-[10px]"
-                        >
-                           About
-                        </Link>
-                        <Link
-                           href="/contact"
-                           className=" py-3 px-5 hover:bg-gray-100 rounded-[10px]"
-                        >
-                           Contact
-                        </Link>
-                        <Link
-                           href="/projects"
-                           className=" py-3 px-5 hover:bg-gray-100 rounded-[10px]"
-                        >
-                           Projects
-                        </Link>
-                     </>
-                  )}
+                  <Link
+                     href="/"
+                     className="flex gap-2 py-3 px-5 hover:bg-gray-100 rounded-[10px]"
+                  >
+                     <FaUserSecret className="text-xl" />
+                     All Secrets
+                  </Link>
+                  <Link
+                     href="/edit-secret"
+                     className="flex gap-2 py-3 px-5 hover:bg-gray-100 rounded-[10px]"
+                  >
+                     <GiSecretBook className="text-xl" />
+                     Edit Secret
+                  </Link>
                </nav>
             </div>
             {isLoggedin ? (
                <nav className="flex gap-4 text-sm  items-center">
+                  <Link
+                     href="/profile"
+                     className=" py-3 px-5 hover:bg-gray-200 rounded-[10px] bg-gray-100 flex justify-center gap-2"
+                  >
+                     <CgProfile className="text-xl" />
+                     Profile
+                  </Link>
                   <button
                      onClick={handleLogout}
                      className=" py-3 px-5 hover:bg-gray-200 rounded-[10px] bg-gray-100"
                   >
-                     Logout
+                     <TbLogout className="text-xl" />
                   </button>
                </nav>
             ) : (

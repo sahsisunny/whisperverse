@@ -8,7 +8,7 @@ import Router from 'next/router'
 import { useRegisterMutation } from '@/app/services/userApi'
 import useToast from '@/hooks/useToast'
 import Toast from '../Toast'
-
+import Button from '../Button'
 interface FormData {
    username: string
    email: string
@@ -249,12 +249,9 @@ function RegisterForm() {
                         </p>
                      )}
                   </div>
-                  <button
-                     type="submit"
-                     className="bg-blue-500  py-2 px-4 rounded-md hover:bg-blue-600 text-white"
-                  >
+                  <Button isLoading={registerLoading} onClick={() => {}}>
                      Sign Up
-                  </button>
+                  </Button>
                </form>
             </div>
          </div>

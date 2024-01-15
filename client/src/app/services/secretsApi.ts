@@ -2,11 +2,12 @@ import { api } from './api'
 
 type ISecretsResponse = {
    _id: string
-   secret: string
+   message: string
    userId: string
 }
 
 type ISecretsPayload = {
+   userId?: string
    secret: string
 }
 
@@ -16,25 +17,21 @@ export const secretsApi = api.injectEndpoints({
          query: () => '/secrets',
          providesTags: ['Secrets'],
       }),
-      addSecret: builder.mutation<ISecretsResponse, ISecretsPayload>({
-         query: (body) => ({
-            url: '/secrets',
-            method: 'POST',
-            body,
-         }),
-         invalidatesTags: ['Secrets'],
+      getSecret: builder.query<ISecretsResponse, string>({
+         query: (userId) => `/secrets/${userId}`,
+         providesTags: ['Secrets'],
       }),
       deleteSecret: builder.mutation<ISecretsResponse, string>({
-         query: (id) => ({
-            url: `/secrets/${id}`,
+         query: (userId) => ({
+            url: `/secrets/${userId}`,
             method: 'DELETE',
          }),
          invalidatesTags: ['Secrets'],
       }),
-      updateSecret: builder.mutation<ISecretsResponse, ISecretsResponse>({
-         query: ({ _id, ...body }) => ({
-            url: `/secrets/${_id}`,
-            method: 'PUT',
+      addOrUpdateSecret: builder.mutation<ISecretsResponse, ISecretsPayload>({
+         query: (body) => ({
+            url: `/secrets`,
+            method: 'POST',
             body,
          }),
          invalidatesTags: ['Secrets'],
@@ -44,7 +41,7 @@ export const secretsApi = api.injectEndpoints({
 
 export const {
    useGetAllSecretsQuery,
-   useAddSecretMutation,
+   useGetSecretQuery,
    useDeleteSecretMutation,
-   useUpdateSecretMutation,
+   useAddOrUpdateSecretMutation,
 } = secretsApi

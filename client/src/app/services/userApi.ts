@@ -3,6 +3,7 @@ import { api } from './api'
 type IUserResponse = {
    id: string
    name: string
+   username: string
    email: string
 }
 

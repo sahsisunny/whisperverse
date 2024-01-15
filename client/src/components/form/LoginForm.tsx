@@ -11,6 +11,8 @@ import {
 } from '@/app/services/userApi'
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
 import Router from 'next/router'
+import Button from '../Button'
+
 function LoginForm() {
    const [inputType, setInputType] = useState('email') // Default to email
    const [
@@ -132,12 +134,20 @@ function LoginForm() {
                      className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                   />
                </div>
-               <button
-                  type="submit"
-                  className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+               <Button
+                  isLoading={
+                     inputType === 'email'
+                        ? emailLoginLoading
+                        : usernameLoginLoading
+                  }
+                  onClick={() => {}}
                >
-                  Sign In
-               </button>
+                  <span>
+                     {inputType === 'email'
+                        ? 'Login with Email'
+                        : 'Login with Username'}
+                  </span>
+               </Button>
             </form>
             <div className="text-center mt-4">
                <button
