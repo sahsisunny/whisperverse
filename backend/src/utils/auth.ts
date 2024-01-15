@@ -52,8 +52,9 @@ export const generateRefreshJWT = async function (
 
 export const generateResetToken = async function () {
    try {
-      const randomBytes = await crypto.randomBytes(32)
-      return randomBytes.toString('hex')
+      const randomBytes = await crypto.randomBytes(5)
+      const randomHex = randomBytes.toString('hex')
+      return parseInt(randomHex, 16).toString().padStart(10, '0')
    } catch (error) {
       throw new Error(error)
    }

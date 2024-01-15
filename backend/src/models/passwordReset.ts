@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose, { Types } from 'mongoose'
 
 const passwordResetSchema = new mongoose.Schema({
    userId: {
@@ -33,7 +33,18 @@ export const createPasswordResetModel = async (
    return await newPasswordReset.save()
 }
 
-export const getPasswordResetByUserId = async (userId: string) => {
+export const updatePasswordResetModel = async (
+   userId: string,
+   resetToken: string,
+) => {
+   const newPasswordReset = await PasswordResetModel.findOne({ userId })
+   if (!newPasswordReset) {
+      throw new Error('Password reset token not found')
+   }
+   newPasswordReset.resetToken = resetToken
+   return await newPasswordReset.save()
+}
+export const getPasswordResetByUserId = async (userId: Types.ObjectId) => {
    return await PasswordResetModel.findOne({ userId })
 }
 
