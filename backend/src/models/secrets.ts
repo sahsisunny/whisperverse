@@ -10,11 +10,15 @@ const SecretSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
    },
+   timestamp: {
+      type: Date,
+      default: Date.now,
+   },
 })
 export const SecretModel = mongoose.model('Secret', SecretSchema)
 
 export const getAllSecretsModel = async () => {
-   return await SecretModel.find({})
+   return await SecretModel.aggregate([{ $sample: { size: 1 } }])
 }
 
 export const getSecretByUserIdModel = async (userId: string) => {
@@ -30,8 +34,8 @@ export const deleteSecretModel = async (id: string) => {
    return await SecretModel.findByIdAndDelete(id)
 }
 
-export const updateSecretModel = async (id: string, secret: string) => {
-   const newSecret = await SecretModel.findById(id)
+export const updateSecretModel = async (userId: string, secret: string) => {
+   const newSecret = await SecretModel.findOne({ userId })
    if (!newSecret) {
       throw new Error('Secret not found')
    }

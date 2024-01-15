@@ -1,4 +1,5 @@
 import express from 'express'
+import { verifyJWT } from '../utils/auth'
 
 import {
    createSecretModel,
@@ -53,39 +54,16 @@ export const getSecretByUserIdController = async (
       }
 
       const secret = await getSecretByUserIdModel(userId)
-      res.json({
-         message: 'Secret found',
-         secret,
-      })
-   } catch (err) {
-      res.status(500).json({ message: err.message })
-   }
-}
-
-/**
- *
- * @param req:  secret
- * @param res: message, newSecret
- * @returns: message, newSecret
- */
-export const createSecretController = async (
-   req: express.Request,
-   res: express.Response,
-) => {
-   try {
-      const secret = req.body.secret
-      const userId = res.locals.userId
-      const secretExists = await getSecretByUserIdModel(userId)
-      if (secretExists) {
-         return res.status(400).json({
-            message: 'Secret already exists',
+      if (!secret) {
+         return res.status(404).json({
+            message: 'Secret not found',
          })
       }
 
-      const newSecret = await createSecretModel(secret, userId)
       res.json({
-         message: 'Secret created successfully',
-         newSecret,
+         id: secret._id,
+         message: secret.secret,
+         userId: secret.userId,
       })
    } catch (err) {
       res.status(500).json({ message: err.message })
@@ -125,36 +103,40 @@ export const deleteSecretController = async (
 }
 
 /**
- *
- * @param req : userId, secret
- * @param res: newSecret
- * @returns: newSecret
+ * @param req: userId, secret
+ * @param res: message, updatedSecret
+ * @returns: message, updatedSecret
  */
-export const updateSecretController = async (
+export const createOrUpdateSecretController = async (
    req: express.Request,
    res: express.Response,
 ) => {
    try {
-      const userId = req.params.id
+      const token = req.cookies['MOONWALKER-AUTH']
+      const payload = await verifyJWT(token)
+
+      if (typeof payload === 'string') {
+         return res.status(401).json({ error: 'Unauthorized' })
+      }
+
+      const userId = payload.userId
       const secret = req.body.secret
 
-      if (!userId) {
-         return res.status(401).json({
-            message: 'Unauthorized',
+      const secretExists = await getSecretByUserIdModel(userId)
+
+      if (secretExists) {
+         const updatedSecret = await updateSecretModel(userId, secret)
+         res.json({
+            message: 'Secret updated successfully',
+            updatedSecret,
+         })
+      } else {
+         const newSecret = await createSecretModel(secret, userId)
+         res.json({
+            message: 'Secret created successfully',
+            newSecret,
          })
       }
-
-      if (!secret) {
-         return res.status(400).json({
-            message: 'Secret is required',
-         })
-      }
-
-      const newSecret = await updateSecretModel(userId, secret)
-      res.json({
-         message: 'Secret updated successfully',
-         newSecret,
-      })
    } catch (err) {
       res.status(500).json({ message: err.message })
    }

@@ -89,7 +89,6 @@ export const loginController = async (
 ) => {
    try {
       const { username, email, password } = req.body
-      console.log(req.body)
 
       let user: IUser
       if (username) {
@@ -97,7 +96,6 @@ export const loginController = async (
       } else if (email) {
          user = await getUserByEmailModel(email)
       }
-      console.log(user)
 
       if (!user) {
          return res.status(404).json({
@@ -166,7 +164,7 @@ export const logoutController = async (
 
       res.clearCookie('MOONWALKER-AUTH')
 
-   //   redirect to /login
+      //   redirect to /login
       return res.redirect('/')
    } catch (err) {
       console.error(err)
@@ -202,12 +200,10 @@ export const getSelfController = async (
       const user = await getUserByUsernameModel(payload.username)
 
       return res.status(200).json({
-         message: 'User retrieved successfully',
-         user: {
-            username: user.username,
-            name: user.name,
-            email: user.email,
-         },
+         id: user.id,
+         username: user.username,
+         name: user.name,
+         email: user.email,
       })
    } catch (err) {
       console.error(err)
@@ -232,7 +228,6 @@ export const googleAuthCallbackController = (
          return res
             .status(401)
             .json({ message: 'Google authentication failed' })
-            
       }
 
       if (!user) {

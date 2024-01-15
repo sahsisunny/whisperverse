@@ -2,16 +2,12 @@ import express from 'express'
 import { authinticate } from '../middlewares/authinticate'
 
 import {
-   createSecretController,
+   createOrUpdateSecretController,
    deleteSecretController,
    getAllSecretsController,
    getSecretByUserIdController,
-   updateSecretController,
 } from '../controller/secrets'
-import {
-   createSecretValidator,
-   updateSecretValidator,
-} from '../middlewares/secrets'
+import { createSecretValidator } from '../middlewares/secrets'
 
 export default (router: express.Router) => {
    router.get('/secrets', authinticate, getAllSecretsController)
@@ -19,9 +15,8 @@ export default (router: express.Router) => {
       '/secrets',
       authinticate,
       createSecretValidator,
-      createSecretController,
+      createOrUpdateSecretController,
    )
-   router.put('/secrets/:id', updateSecretValidator, updateSecretController)
    router.delete('/secrets/:id', deleteSecretController)
    router.get('/secrets/:id', getSecretByUserIdController)
 }
