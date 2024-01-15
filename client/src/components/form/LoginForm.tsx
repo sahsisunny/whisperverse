@@ -82,7 +82,7 @@ function LoginForm() {
          <div className="mx-auto flex flex-col gap-3 p-6 lg:w-[50%] w-full lg:rounded-e-[30px] lg:rounded-s-none rounded-[30px]   bg-white border-l-2 text-black">
             <h1 className="text-4xl font-bold text-center">Sign In</h1>
             <p className="text-center">
-               Sign in with Google to start using WhisperVerse.
+               Sign in with Google to start using Whisper Verse.
             </p>
             <Link
                type="button"
@@ -136,6 +136,12 @@ function LoginForm() {
                      className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                   />
                </div>
+               <Link
+                  href="/password-reset"
+                  className="text-black hover:underline text-end"
+               >
+                  Forgot Password?
+               </Link>
                <Button
                   isLoading={
                      inputType === 'email'
@@ -151,7 +157,7 @@ function LoginForm() {
                   </span>
                </Button>
             </form>
-            <div className="text-center mt-4">
+            <div className="flex flex-col text-center mt-4">
                <button
                   type="button"
                   className="text-black hover:underline"

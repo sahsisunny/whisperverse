@@ -1,7 +1,8 @@
+import Link from 'next/link'
+
 import { useGetAllSecretsQuery } from '@/app/services/secretsApi'
 import Layout from '@/components/Layout'
 import Loader from '@/components/Loader'
-import Link from 'next/link'
 
 export default function HomePage() {
    const { data: secretsData, isLoading } = useGetAllSecretsQuery()
@@ -9,9 +10,9 @@ export default function HomePage() {
    if (isLoading) return <Loader />
 
    return (
-      <Layout title="WhisperVerse - All your important links in one place">
-         <section className="flex flex-col justify-center items-center text-center lg:p-20 py-28 px-6  gap-6 w-full">
-            <h1 className="text-5xl font-bold">WhisperVerse</h1>
+      <Layout title="Whisper Verse - All your important links in one place">
+         <section className="flex flex-col justify-center items-center text-center lg:p-20 py-28 px-6  gap-6 w-full min-h-[82vh]">
+            <h1 className="text-5xl font-bold">Whisper Verse</h1>
             <h2 className="text-3xl font-semibold">All Secrets in one place</h2>
 
             <div className="flex flex-col gap-4 items-center justify-center w-full lg:w-1/2">
@@ -25,7 +26,14 @@ export default function HomePage() {
                </div>
 
                <h1 className="text-2xl font-bold text-gray-200">
-                  Latest Secrets
+                  {secretsData &&
+                     'Secrets Shared: ' +
+                        secretsData?.secrets.length +
+                        ' ' +
+                        new Date().toLocaleDateString() +
+                        ' ' +
+                        new Date().toLocaleTimeString() +
+                        ' IST'}
                </h1>
                <div className="flex flex-wrap gap-4 items-center justify-center w-full">
                   {secretsData?.secrets.map((secret) => (

@@ -5,7 +5,7 @@ import Layout from '@/components/Layout'
 
 function NotLoggedIn() {
    return (
-      <Layout title="Edit Secret - WhisperVerse">
+      <Layout title="Edit Secret - Whisper Verse">
          <section className="flex lg:flex-row flex-col justify-center min-h-[82vh] sm:px-20 p-6 my-auto text-white">
             <div className="flex flex-col gap-4 items-center justify-center w-full lg:w-1/2">
                <h1 className="text-3xl font-bold text-white mb-4">

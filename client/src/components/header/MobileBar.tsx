@@ -3,8 +3,7 @@ import { usePathname } from 'next/navigation'
 import React from 'react'
 import { IconType } from 'react-icons'
 import { BiHomeAlt, BiSolidHome } from 'react-icons/bi'
-
-import { FaUserCircle, FaRegUserCircle } from 'react-icons/fa'
+import { FaRegUserCircle, FaUserCircle } from 'react-icons/fa'
 import { FaUserSecret } from 'react-icons/fa6'
 import { LiaUserSecretSolid } from 'react-icons/lia'
 

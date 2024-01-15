@@ -9,6 +9,12 @@ type IPasswordResetResponse = {
       timestamp: string
    }
 }
+type IPasswordResetPayload = {
+   email?: string
+   username?: string
+   resetToken: string
+   newPassword: string
+}
 
 export const passwordResetApi = api.injectEndpoints({
    endpoints: (builder) => ({
@@ -30,6 +36,14 @@ export const passwordResetApi = api.injectEndpoints({
          }),
          invalidatesTags: ['PasswordReset'],
       }),
+      resetPassword: builder.mutation<string, IPasswordResetPayload>({
+         query: (body) => ({
+            url: `/password-reset/reset`,
+            method: 'PUT',
+            body,
+         }),
+         invalidatesTags: ['PasswordReset'],
+      }),
    }),
 })
 
@@ -37,4 +51,5 @@ export const {
    useGetPasswordResetQuery,
    useCreatePasswordResetMutation,
    useDeletePasswordResetMutation,
+   useResetPasswordMutation,
 } = passwordResetApi

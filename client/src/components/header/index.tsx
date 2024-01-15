@@ -30,17 +30,17 @@ function Header() {
             <div className="flex gap-6 ">
                <Link
                   href="/"
-                  className="flex items-center text-md font-semibold text-blue-500"
+                  className="flex items-center text-md font-semibold text-black"
                >
                   <Image
                      src={LogoImage}
                      width={40}
                      height={40}
-                     alt="WhisperVerse Logo"
+                     alt="Whisper Verse Logo"
                      className="rounded-full cursor-pointer"
                   />
 
-                  <span>WhisperVerse</span>
+                  <span>Whisper Verse</span>
                </Link>
                <nav className="md:flex items-center text-black font-semibold text-sm hidden ">
                   <Link

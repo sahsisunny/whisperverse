@@ -5,11 +5,11 @@ import {
    useDeleteSecretMutation,
    useGetSecretQuery,
 } from '@/app/services/secretsApi'
-import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
 import Button from '@/components/Button'
 import Layout from '@/components/Layout'
 import Loader from '@/components/Loader'
 import NotLoggedIn from '@/components/NotLoggedIn'
+import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
 
 export default function EditSecret() {
    const DELETE_MUTATION = useDeleteSecretMutation()
@@ -66,7 +66,7 @@ export default function EditSecret() {
    }
 
    return (
-      <Layout title="Edit Secret - WhisperVerse">
+      <Layout title="Edit Secret - Whisper Verse">
          <section className="flex lg:flex-row flex-col justify-center min-h-[82vh] sm:px-20 p-6 my-auto">
             <form
                className="flex flex-col gap-4 items-center justify-center w-full lg:w-1/2"

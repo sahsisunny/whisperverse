@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
-import Layout from '@/components/Layout'
+import { FaCopy } from 'react-icons/fa'
+import { MdDelete } from 'react-icons/md'
+import { RiAiGenerate } from 'react-icons/ri'
+
 import {
-   useGetPasswordResetQuery,
    useCreatePasswordResetMutation,
    useDeletePasswordResetMutation,
+   useGetPasswordResetQuery,
 } from '@/app/services/passwordResetApi'
-import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
-import NotLoggedIn from '@/components/NotLoggedIn'
-import Loader from '@/components/Loader'
 import Button from '@/components/Button'
-import { MdDelete } from 'react-icons/md'
-import { FaCopy } from 'react-icons/fa'
-import { RiAiGenerate } from 'react-icons/ri'
+import Layout from '@/components/Layout'
+import Loader from '@/components/Loader'
+import NotLoggedIn from '@/components/NotLoggedIn'
+import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
 
 export default function ProfilePage() {
    const CREATE_MUTATION = useCreatePasswordResetMutation()
@@ -71,7 +72,7 @@ export default function ProfilePage() {
    }
 
    return (
-      <Layout title="Account - WhisperVerse">
+      <Layout title="Account - Whisper Verse">
          <section className="flex lg:flex-row flex-col justify-center min-h-[82vh] sm:px-20 p-6 my-auto">
             <div className="flex flex-col gap-4 w-[80%] p-4">
                <h1 className="text-2xl font-bold text-center">

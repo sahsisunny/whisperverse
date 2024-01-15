@@ -7,8 +7,7 @@ function Footer() {
          <div className="max-w-4xl mx-auto px-6 sm:px-8 flex flex-col sm:flex-row justify-between items-center">
             <div>
                <p className="text-sm ">
-                  &copy; {new Date().getFullYear()} WhisperVerse, Inc. All
-                  rights
+                  &copy; {new Date().getFullYear()} Whisper Verse
                </p>
             </div>
             <nav className="flex gap-4 text-sm ">
