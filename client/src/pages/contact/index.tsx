@@ -7,7 +7,7 @@ export default function ContactUs() {
          <section className="flex flex-col justify-center sm:p-20 p-6 py-16 my-auto">
             <div className="mx-auto flex flex-col gap-6 p-6 shadow text-black bg-white rounded-[20px] w-full">
                <h1 className="text-3xl font-bold mb-4 text-center underline">
-                  Contact Us at WhisperVerse
+                  Contact Us
                </h1>
 
                <p>

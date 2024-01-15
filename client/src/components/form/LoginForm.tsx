@@ -1,17 +1,19 @@
 'use client'
+import Image from 'next/image'
+import Link from 'next/link'
+import Router from 'next/router'
 import React, { useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
-import LoginImage from '../../../public/login.jpg'
-import Image from 'next/image'
-import { API } from '@/constants'
-import Link from 'next/link'
+
 import {
-   useLoginUsernameMutation,
    useLoginEmailMutation,
+   useLoginUsernameMutation,
 } from '@/app/services/userApi'
+import Button from '@/components/Button'
+import { API } from '@/constants'
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
-import Router from 'next/router'
-import Button from '../Button'
+
+import LoginImage from '../../../public/login.jpg'
 
 function LoginForm() {
    const [inputType, setInputType] = useState('email') // Default to email

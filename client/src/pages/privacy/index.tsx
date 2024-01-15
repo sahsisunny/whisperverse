@@ -1,7 +1,6 @@
 import { FaEnvelope, FaImage, FaLink, FaUser } from 'react-icons/fa'
-import Layout from '@/components/Layout'
 
-const appName = 'WhisperVerse'
+import Layout from '@/components/Layout'
 
 export default function Privacy() {
    return (
@@ -9,12 +8,12 @@ export default function Privacy() {
          <section className="flex flex-col justify-center sm:p-20 p-6 py-16 my-auto">
             <div className="mx-auto flex flex-col gap-6 p-6 shadow text-black bg-white rounded-[20px]">
                <h1 className="text-3xl font-bold mb-4 text-center underline">
-                  Privacy Policy for {appName}
+                  Privacy Policy
                </h1>
 
                <p>
-                  Welcome to {appName}! We value your trust, and we want to be
-                  transparent about how we collect, use, and protect your
+                  Welcome to WhisperVerse! We value your trust, and we want to
+                  be transparent about how we collect, use, and protect your
                   personal information. Please take a moment to review our
                   privacy practices below.
                </p>
@@ -25,8 +24,8 @@ export default function Privacy() {
                   Information We Collect
                </h2>
                <p>
-                  At {appName}, we collect the following types of information to
-                  enhance your experience:
+                  At WhisperVerse, we collect the following types of information
+                  to enhance your experience:
                   <ul className="">
                      <li>
                         <FaEnvelope className="inline-block mr-2" /> Email
@@ -85,7 +84,7 @@ export default function Privacy() {
                </p>
 
                <p className="mt-8">
-                  Thank you for trusting {appName}. Your privacy is our
+                  Thank you for trusting WhisperVerse. Your privacy is our
                   priority, and we are committed to ensuring your online
                   experience is secure and enjoyable.
                </p>

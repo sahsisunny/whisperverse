@@ -1,5 +1,5 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { api } from '@/app/services/api'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 const rootReducer = combineReducers({
    [api.reducerPath]: api.reducer,

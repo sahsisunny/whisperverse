@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { FC, ReactNode } from 'react'
-import MobileBar from '../header/MobileBar'
-import Header from '../header'
-import Footer from '../footer'
+
+import Footer from '@/components/footer'
+import Header from '@/components/header'
+import MobileBar from '@/components/header/MobileBar'
 
 type LayoutProps = {
    title: string

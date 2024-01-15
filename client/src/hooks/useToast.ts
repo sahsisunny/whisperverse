@@ -1,5 +1,6 @@
-import { ToastType } from '@/types/Toast'
 import { useEffect, useState } from 'react'
+
+import { ToastType } from '@/types/Toast'
 
 let toastIdCounter = 0
 

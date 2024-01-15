@@ -1,15 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { IoMdSettings } from 'react-icons/io'
+import { CgProfile } from 'react-icons/cg'
 import { FaUserSecret } from 'react-icons/fa6'
-import { TbLogout } from 'react-icons/tb'
 import { GiSecretBook } from 'react-icons/gi'
+import { TbLogout } from 'react-icons/tb'
+
+import { useLogoutMutation } from '@/app/services/userApi'
+import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
 
 import LogoImage from '../../../public/WhisperVerse.webp'
-import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
-import { useLogoutMutation } from '@/app/services/userApi'
-import { CgProfile } from 'react-icons/cg'
 
 function Header() {
    const { isLoggedin } = useIsAuthenticated()

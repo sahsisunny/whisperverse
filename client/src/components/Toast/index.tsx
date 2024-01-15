@@ -1,6 +1,7 @@
-import { ToastType } from '@/types/Toast'
 import { FC, useEffect } from 'react'
 import { MdDone, MdError, MdInfo } from 'react-icons/md'
+
+import { ToastType } from '@/types/Toast'
 
 const typeClassMap = {
    success: 'bg-green-500 text-white',

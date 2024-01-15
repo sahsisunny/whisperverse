@@ -1,14 +1,15 @@
-import Layout from '@/components/Layout'
+import { useState } from 'react'
+
 import {
-   useGetSecretQuery,
    useAddOrUpdateSecretMutation,
    useDeleteSecretMutation,
+   useGetSecretQuery,
 } from '@/app/services/secretsApi'
 import { useGetSelfQuery } from '@/app/services/userApi'
-import { useState } from 'react'
 import Button from '@/components/Button'
-import NotLoggedIn from '@/components/NotLoggedIn'
+import Layout from '@/components/Layout'
 import Loader from '@/components/Loader'
+import NotLoggedIn from '@/components/NotLoggedIn'
 
 export default function EditSecret() {
    const DELETE_MUTATION = useDeleteSecretMutation()
