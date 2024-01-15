@@ -27,10 +27,10 @@ app.use(
 app.use(compression())
 app.use(cookieParser())
 app.use(bodyParser.json())
-// Set up express-session middleware
+
 app.use(
    session({
-      secret: 'your-secret-key', // Replace with a secret key for session management
+      secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
       cookie: {
@@ -40,7 +40,6 @@ app.use(
    }),
 )
 
-// Initialize passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
 
