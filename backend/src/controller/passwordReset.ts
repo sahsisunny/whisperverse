@@ -118,14 +118,10 @@ export const passwordResetController = async (
 
       const existPasswordResetToken = await getPasswordResetByUserId(userId)
       if (existPasswordResetToken === null) {
-         return res
-            .status(404)
-            .json({ message: 'No password reset token found' })
+         return res.status(404).json({ error: 'No password reset token found' })
       }
       if (resetToken !== existPasswordResetToken.resetToken) {
-         return res
-            .status(401)
-            .json({ message: 'Invalid password reset token' })
+         return res.status(401).json({ error: 'Invalid password reset token' })
       }
 
       const passwordHash = await generateHash(newPassword)
@@ -135,7 +131,7 @@ export const passwordResetController = async (
          passwordHash,
       )
       if (!updatedUserPassword) {
-         return res.status(404).json({ message: 'User not found' })
+         return res.status(404).json({ error: 'User not found' })
       }
       res.status(200).json({
          message: 'Password reset successfully',

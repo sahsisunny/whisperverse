@@ -31,14 +31,14 @@ export const registerController = async (
       const existingEmail = await getUserByEmailModel(email)
       if (existingEmail) {
          return res.status(400).json({
-            message: 'Email already exists',
+            error: 'Email already exists',
          })
       }
 
       const existingUsername = await getUserByUsernameModel(username)
       if (existingUsername) {
          return res.status(400).json({
-            message: 'Username already exists',
+            error: 'Username already exists',
          })
       }
 
@@ -99,19 +99,19 @@ export const loginController = async (
 
       if (!user) {
          return res.status(404).json({
-            message: 'User does not exist',
+            error: 'User does not exist',
          })
       }
 
       if (!user.passwordHash) {
          return res.status(404).json({
-            message: 'Password not created',
+            error: 'Password not created',
          })
       }
       const passwordMatch = await compareHash(password, user.passwordHash)
       if (!passwordMatch) {
          return res.status(404).json({
-            message: 'Password is incorrect',
+            error: 'Password is incorrect',
          })
       }
 
