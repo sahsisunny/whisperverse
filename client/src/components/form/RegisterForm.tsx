@@ -6,7 +6,9 @@ import { FcGoogle } from 'react-icons/fc'
 
 import { useRegisterMutation } from '@/app/services/userApi'
 import Button from '@/components/Button'
+import Toast from '@/components/Toast'
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
+import useToast from '@/hooks/useToast'
 
 import RoginImageImage from '../../../public/register.jpg'
 
@@ -27,6 +29,7 @@ interface FormErrors {
 }
 
 function RegisterForm() {
+   const { showToast, toasts } = useToast()
    const [formData, setFormData] = useState<FormData>({
       username: '',
       email: '',
@@ -86,11 +89,7 @@ function RegisterForm() {
                Router.push('/')
             })
             .catch((error) => {
-               console.log(error)
-               if (error.data.message.includes('email')) {
-               } else if (error.data.message.includes('username')) {
-                  newErrors.username = error.data.message
-               }
+               showToast(error.data?.error, 3000, 'error')
             })
       }
    }
@@ -209,6 +208,7 @@ function RegisterForm() {
                      name="password"
                      placeholder="Password"
                      required
+                     minLength={8}
                      className={`mt-1 p-2 border border-gray-300 rounded-md w-full ${
                         errors.password ? 'border-red-500' : ''
                      }`}
@@ -231,6 +231,7 @@ function RegisterForm() {
                      name="confirmPassword"
                      placeholder="Confirm Password"
                      required
+                     minLength={8}
                      className={`mt-1 p-2 border border-gray-300 rounded-md w-full ${
                         errors.confirmPassword ? 'border-red-500' : ''
                      }`}
@@ -247,6 +248,9 @@ function RegisterForm() {
                </Button>
             </form>
          </div>
+         {toasts.map((toast) => (
+            <Toast key={toast.id} {...toast} />
+         ))}
       </div>
    )
 }

@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { IoMdArrowRoundBack, IoMdSave } from 'react-icons/io'
+import { MdDelete, MdEdit } from 'react-icons/md'
 
 import {
    useAddOrUpdateSecretMutation,
@@ -9,9 +11,13 @@ import Button from '@/components/Button'
 import Layout from '@/components/Layout'
 import Loader from '@/components/Loader'
 import NotLoggedIn from '@/components/NotLoggedIn'
+import Toast from '@/components/Toast'
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
+import useToast from '@/hooks/useToast'
 
 export default function EditSecret() {
+   const { showToast, toasts } = useToast()
+
    const DELETE_MUTATION = useDeleteSecretMutation()
    const ADD_OR_UPDATE_MUTATION = useAddOrUpdateSecretMutation()
    const {
@@ -46,11 +52,14 @@ export default function EditSecret() {
          await addOrupdateSecret(data)
             .unwrap()
             .then(async () => {
+               showToast('Secret updated successfully', 3000, 'success')
                setUpdatedSecret('')
                setSecretMessage(secretText)
                setShowTextArea(false)
             })
-            .catch((err) => console.log(err))
+            .catch(() => {
+               showToast('Something went wrong', 3000, 'error')
+            })
       }
    }
    const handleDeleteSecret = async () => {
@@ -58,10 +67,13 @@ export default function EditSecret() {
          await deleteSecret(userData?.id || '')
             .unwrap()
             .then(() => {
+               showToast('Secret deleted successfully', 3000, 'success')
                setUpdatedSecret('')
                setShowTextArea(true)
             })
-            .catch((err) => console.log(err))
+            .catch(() => {
+               showToast('Something went wrong', 3000, 'error')
+            })
       }
    }
 
@@ -87,9 +99,11 @@ export default function EditSecret() {
                               isLoading={isAddingOrUpdating}
                               onClick={() => setShowTextArea(true)}
                            >
-                              Edit
+                              <MdEdit className="inline-block mr-2" /> Edit
                            </Button>
-                           <Button onClick={handleDeleteSecret}>Delete</Button>
+                           <Button onClick={handleDeleteSecret}>
+                              <MdDelete className="inline-block mr-2" /> Delete
+                           </Button>
                         </div>
                      </div>
                   ) : (
@@ -97,8 +111,8 @@ export default function EditSecret() {
                         <textarea
                            id="secret"
                            name="secret"
-                           value={updatedSecret}
                            defaultValue={secretMessage}
+                           value={updatedSecret}
                            onChange={(e) => setUpdatedSecret(e.target.value)}
                            placeholder={`Enter Secret`}
                            required
@@ -111,14 +125,27 @@ export default function EditSecret() {
                               isLoading={isAddingOrUpdating}
                               onClick={() => {}}
                            >
-                              Save
+                              <IoMdSave className="inline-block mr-2" /> Save
                            </Button>
+                           {secretMessage && (
+                              <Button
+                                 onClick={() => {
+                                    setShowTextArea(false)
+                                 }}
+                              >
+                                 <IoMdArrowRoundBack className="inline-block mr-2" />{' '}
+                                 Cancel
+                              </Button>
+                           )}
                         </div>
                      </>
                   )}
                </div>
             </form>
          </section>
+         {toasts.map((toast) => (
+            <Toast key={toast.id} {...toast} />
+         ))}
       </Layout>
    )
 }

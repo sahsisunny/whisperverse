@@ -12,9 +12,13 @@ import Button from '@/components/Button'
 import Layout from '@/components/Layout'
 import Loader from '@/components/Loader'
 import NotLoggedIn from '@/components/NotLoggedIn'
+import Toast from '@/components/Toast'
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
+import useToast from '@/hooks/useToast'
 
 export default function ProfilePage() {
+   const { showToast, toasts } = useToast()
+
    const CREATE_MUTATION = useCreatePasswordResetMutation()
    const DELETE_MUTATION = useDeletePasswordResetMutation()
    const {
@@ -48,27 +52,38 @@ export default function ProfilePage() {
          .then((data) => {
             setResetToken(data.passwordReset.resetToken)
             setShowToken(true)
+            showToast('Token created successfully', 3000, 'success')
          })
-         .catch((err) => console.log(err))
+         .catch((err) => {
+            console.log(err)
+            showToast('Something went wrong', 3000, 'error')
+         })
    }
 
    const handleDeleteResetToken = async () => {
       await deleteResetToken()
          .unwrap()
          .then(() => {
+            showToast('Token deleted successfully', 3000, 'success')
             setResetToken('')
             setShowToken(false)
          })
-         .catch((err) => console.log(err))
+         .catch((err) => showToast('Something went wrong', 3000, 'error'))
    }
 
    const handleFetchResetToken = async () => {
       await fetchResetToken()
          .unwrap()
          .then((data) => {
+            showToast('Token fetched successfully', 3000, 'success')
             setResetToken(data.passwordReset.resetToken)
          })
-         .catch((err) => console.log(err))
+         .catch((err) => showToast('Something went wrong', 3000, 'error'))
+   }
+
+   const handleCopyToken = () => {
+      navigator.clipboard.writeText(resetToken)
+      showToast('Token copied to clipboard', 3000, 'success')
    }
 
    return (
@@ -103,11 +118,7 @@ export default function ProfilePage() {
                            >
                               <RiAiGenerate /> Show Token
                            </Button>
-                           <Button
-                              onClick={() =>
-                                 navigator.clipboard.writeText(resetToken)
-                              }
-                           >
+                           <Button onClick={handleCopyToken}>
                               <FaCopy /> Copy
                            </Button>
                            <Button
@@ -129,6 +140,9 @@ export default function ProfilePage() {
                </div>
             </div>
          </section>
+         {toasts.map((toast) => (
+            <Toast key={toast.id} {...toast} />
+         ))}
       </Layout>
    )
 }

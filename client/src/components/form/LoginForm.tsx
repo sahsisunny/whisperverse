@@ -10,27 +10,32 @@ import {
    useLoginUsernameMutation,
 } from '@/app/services/userApi'
 import Button from '@/components/Button'
+import Toast from '@/components/Toast'
 import { API } from '@/constants'
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
+import useToast from '@/hooks/useToast'
 
 import LoginImage from '../../../public/login.jpg'
 
 function LoginForm() {
-   const [inputType, setInputType] = useState('email') // Default to email
-   const [
-      emailLogin,
-      { isLoading: emailLoginLoading, error: emailLoginError },
-   ] = useLoginEmailMutation()
-   const [
-      usernameLogin,
-      { isLoading: usernameLoginLoading, error: usernameLoginError },
-   ] = useLoginUsernameMutation()
+   const { showToast, toasts } = useToast()
+
+   const [inputType, setInputType] = useState('email')
+   const [emailLogin, { isLoading: emailLoginLoading }] =
+      useLoginEmailMutation()
+   const [usernameLogin, { isLoading: usernameLoginLoading }] =
+      useLoginUsernameMutation()
    const { isLoggedin } = useIsAuthenticated()
    if (isLoggedin) {
       Router.push('/')
    }
    const toggleInputType = () => {
       setInputType((prevType) => (prevType === 'email' ? 'username' : 'email'))
+      showToast(
+         `Switched to ${inputType === 'email' ? 'Username' : 'Email'}`,
+         3000,
+         'success',
+      )
    }
 
    const handleSubmitwithEmail = async (
@@ -45,8 +50,8 @@ function LoginForm() {
          .then(() => {
             Router.push('/')
          })
-         .catch((rejectedValueOrSerializedError) => {
-            console.log(rejectedValueOrSerializedError)
+         .catch((error) => {
+            showToast(error.data.error, 3000, 'error')
          })
    }
 
@@ -62,8 +67,8 @@ function LoginForm() {
          .then(() => {
             Router.push('/')
          })
-         .catch((rejectedValueOrSerializedError) => {
-            console.log(rejectedValueOrSerializedError)
+         .catch((error) => {
+            showToast(error.data.error, 3000, 'error')
          })
    }
 
@@ -132,6 +137,7 @@ function LoginForm() {
                      id="password"
                      name="password"
                      placeholder="Password"
+                     minLength={8}
                      required
                      className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                   />
@@ -167,6 +173,9 @@ function LoginForm() {
                </button>
             </div>
          </div>
+         {toasts.map((toast) => (
+            <Toast key={toast.id} {...toast} />
+         ))}
       </div>
    )
 }

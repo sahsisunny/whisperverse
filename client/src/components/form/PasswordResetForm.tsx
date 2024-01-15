@@ -4,6 +4,8 @@ import React, { ChangeEvent, FormEvent, useState } from 'react'
 
 import { useResetPasswordMutation } from '@/app/services/passwordResetApi'
 import Button from '@/components/Button'
+import Toast from '@/components/Toast'
+import useToast from '@/hooks/useToast'
 
 import RoginImageImage from '../../../public/register.jpg'
 
@@ -24,6 +26,8 @@ interface FormErrors {
 }
 
 export default function PasswordResetForm() {
+   const { showToast, toasts } = useToast()
+
    const RESET_MUTATION = useResetPasswordMutation()
    const [formData, setFormData] = useState<FormData>({
       email: '',
@@ -47,20 +51,19 @@ export default function PasswordResetForm() {
       const newErrors: FormErrors = {}
 
       if (!formData.email?.trim() && !formData.username?.trim()) {
-         newErrors.email = 'Email or Username is required'
-         newErrors.username = 'Email or Username is required'
+         showToast('Email or Username is required', 3000, 'error')
       }
 
       if (!formData.resetToken.trim()) {
-         newErrors.resetToken = 'Reset Token is required'
+         showToast('Reset Token is required', 3000, 'error')
       }
 
       if (!formData.newPassword.trim()) {
-         newErrors.newPassword = 'Password is required'
+         showToast('Password is required', 3000, 'error')
       }
 
       if (formData.newPassword !== formData.confirmPassword) {
-         newErrors.confirmPassword = 'Passwords do not match'
+         showToast('Passwords do not match', 3000, 'error')
       }
 
       setErrors(newErrors)
@@ -70,26 +73,26 @@ export default function PasswordResetForm() {
          if (!data.email) delete data.email
          if (!data.username) delete data.username
 
-         try {
-            await resetPassword(data)
-               .unwrap()
-               .then(() => {
-                  setFormData({
-                     email: '',
-                     username: '',
-                     resetToken: '',
-                     newPassword: '',
-                     confirmPassword: '',
-                  })
-                  Router.push('/login')
+         await resetPassword(data)
+            .unwrap()
+            .then(() => {
+               setFormData({
+                  email: '',
+                  username: '',
+                  resetToken: '',
+                  newPassword: '',
+                  confirmPassword: '',
                })
-               .catch((err) => {
-                  setErrors(err.data)
-                  console.error('Error resetting password:', err)
-               })
-         } catch (error) {
-            console.error('Error resetting password:', error)
-         }
+               Router.push('/login')
+            })
+            .catch((error) => {
+               console.log(error)
+               showToast(
+                  error.data?.error || error.data?.message,
+                  3000,
+                  'error',
+               )
+            })
       }
    }
 
@@ -191,6 +194,7 @@ export default function PasswordResetForm() {
                      id="newPassword"
                      name="newPassword"
                      placeholder="New Password"
+                     minLength={8}
                      required
                      className={`mt-1 p-2 border border-gray-300 rounded-md w-full ${
                         errors.newPassword ? 'border-red-500' : ''
@@ -215,6 +219,7 @@ export default function PasswordResetForm() {
                      id="confirmPassword"
                      name="confirmPassword"
                      placeholder="Confirm Password"
+                     minLength={8}
                      required
                      className={`mt-1 p-2 border border-gray-300 rounded-md w-full ${
                         errors.confirmPassword ? 'border-red-500' : ''
@@ -232,6 +237,9 @@ export default function PasswordResetForm() {
                </Button>
             </form>
          </div>
+         {toasts.map((toast) => (
+            <Toast key={toast.id} {...toast} />
+         ))}
       </div>
    )
 }
