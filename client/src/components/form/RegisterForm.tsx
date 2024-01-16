@@ -9,8 +9,9 @@ import Button from '@/components/Button'
 import Toast from '@/components/Toast'
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
 import useToast from '@/hooks/useToast'
-
+import { API } from '@/constants'
 import RoginImageImage from '../../../public/register.jpg'
+import Link from 'next/link'
 
 interface FormData {
    username: string
@@ -112,12 +113,12 @@ function RegisterForm() {
                Sign up with your details or continue with Google.
             </p>
 
-            <button
-               type="button"
+            <Link
                className="flex justify-center item-center bg-gray-100 border py-2 px-4 rounded-md hover:bg-gray-200  items-center gap-2"
+               href={`${API}/auth/google`}
             >
                <FcGoogle className="inline-block mr-2" /> Sign Up With Google
-            </button>
+            </Link>
 
             <div className="flex items-center gap-4">
                <hr className="flex-1" />

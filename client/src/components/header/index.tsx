@@ -81,13 +81,13 @@ function Header() {
                <nav className="flex gap-2 text-sm text-black items-center">
                   <Link
                      href="/login"
-                     className=" py-3 px-5 hover:bg-gray-200 rounded-[10px] bg-gray-100"
+                     className="flex justify-center items-center  gap-2 py-3 px-5 hover:bg-gray-200 rounded-r  -[10px] rounded-bl-[35px] bg-gray-300"
                   >
                      Sign in
                   </Link>
                   <Link
                      href="/register"
-                     className=" py-3 px-5 hover:bg-gray-200 rounded-[10px] bg-gray-100"
+                     className="flex justify-center items-center  gap-2 py-3 px-5 hover:bg-gray-200 rounded-l-[10px] rounded-br-[35px] bg-gray-300"
                   >
                      Sign up
                   </Link>

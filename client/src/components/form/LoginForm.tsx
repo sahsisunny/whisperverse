@@ -93,7 +93,7 @@ function LoginForm() {
             <Link
                type="button"
                className="flex justify-center item-center bg-gray-100 border py-2 px-4 rounded-md hover:bg-gray-200  items-center gap-2"
-               href={`${API}/auth/google/callback`}
+               href={`${API}/auth/google`}
             >
                <FcGoogle className="inline-block mr-2" /> Sign In With Google
             </Link>
