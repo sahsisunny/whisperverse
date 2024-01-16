@@ -37,8 +37,8 @@ export default function EditSecret() {
    const [secretMessage, setSecretMessage] = useState(secretData?.message || '')
    const [showTextArea, setShowTextArea] = useState(false)
 
+   if (isLoading) return <Loader />
    if (!isLoggedin) return <NotLoggedIn />
-   if (isLoading || userIsLoading) return <Loader />
 
    const handleAddOrUpdateSecret = async (
       e: React.FormEvent<HTMLFormElement>,

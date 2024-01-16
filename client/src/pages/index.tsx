@@ -1,17 +1,20 @@
 import Link from 'next/link'
 
 import { useGetAllSecretsQuery } from '@/app/services/secretsApi'
+import WaitBanner from '@/components/banner/WaitBanner'
 import GithubLabel from '@/components/Label/Github'
 import Layout from '@/components/Layout'
 import Loader from '@/components/Loader'
 
 export default function HomePage() {
-   const { data: secretsData, isLoading } = useGetAllSecretsQuery()
+   const { data: secretsData, isLoading, isError } = useGetAllSecretsQuery()
 
    if (isLoading) return <Loader />
 
    return (
       <Layout title="Whisper Verse - All your important links in one place">
+         <WaitBanner isLoading={isLoading} isError={isError} />
+
          <section className="flex flex-col justify-center items-center text-center lg:p-20 py-28 px-6  gap-6 w-full min-h-[82vh]">
             <GithubLabel />
             <h1 className="text-5xl font-bold">Whisper Verse</h1>

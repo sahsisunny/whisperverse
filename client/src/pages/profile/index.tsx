@@ -43,8 +43,8 @@ export default function ProfilePage() {
          'Click "Show Token" to see your token',
    )
    const [showToken, setShowToken] = useState(true)
+   if (passwordResetLoading) return <Loader />
    if (!isLoggedin) return <NotLoggedIn />
-   if (userLoading) return <Loader />
 
    const handleCreateResetToken = async () => {
       await createResetToken()

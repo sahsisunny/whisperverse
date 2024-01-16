@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import Router from 'next/router'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
@@ -7,11 +8,11 @@ import { MdAccountCircle } from 'react-icons/md'
 import { useRegisterMutation } from '@/app/services/userApi'
 import Button from '@/components/Button'
 import Toast from '@/components/Toast'
+import { API } from '@/constants'
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
 import useToast from '@/hooks/useToast'
-import { API } from '@/constants'
+
 import RoginImageImage from '../../../public/register.jpg'
-import Link from 'next/link'
 
 interface FormData {
    username: string
