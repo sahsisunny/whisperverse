@@ -4,8 +4,9 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth2'
 
 import {
    createUserModel,
+   getUserByEmailModel,
+   updateUserGoogleIdModel,
    getUserByGoogleIdModel,
-   UserModel,
 } from '../models/user'
 import { IUser } from '../types/user'
 
@@ -30,9 +31,12 @@ passport.use(
       },
       async (accessToken, refreshToken, profile, done) => {
          try {
-            let user = await getUserByGoogleIdModel(profile.id)
+            let user = await getUserByEmailModel(profile.emails[0].value)
             if (user && profile.emails === user.email) {
-               user = await UserModel.findOneAndUpdate({ googleId: profile.id })
+               user = await updateUserGoogleIdModel(
+                  profile.emails[0].value,
+                  profile.id,
+               )
                return done(null, user)
             }
 
@@ -43,7 +47,6 @@ passport.use(
                   googleId: profile.id,
                })
             }
-
             return done(null, user)
          } catch (err) {
             return done(err, null)
@@ -58,7 +61,7 @@ passport.serializeUser((user: IUser, done) => {
 
 passport.deserializeUser(async (id: string, done) => {
    try {
-      const user = await UserModel.findById(id)
+      const user = await getUserByGoogleIdModel(id)
       done(null, user)
    } catch (err) {
       done(err, null)

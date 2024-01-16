@@ -74,3 +74,15 @@ export const updateUserPasswordModel = async (
    user.passwordHash = passwordHash
    return await user.save()
 }
+
+export const updateUserGoogleIdModel = async (
+   email: string,
+   googleId: string,
+) => {
+   const user = await UserModel.findById(email)
+   if (!user) {
+      throw new Error('User not found')
+   }
+   user.googleId = googleId
+   return await user.save()
+}

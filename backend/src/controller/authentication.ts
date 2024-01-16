@@ -213,7 +213,6 @@ export const getSelfController = async (
    }
 }
 
-// Create a controller for Google OAuth authentication
 export const googleAuthController = passport.authenticate('google', {
    scope: ['profile', 'email'],
 })
@@ -224,12 +223,10 @@ export const googleAuthCallbackController = (
 ) => {
    passport.authenticate('google', async (err: Error, user: IUser) => {
       if (err) {
-         console.error(err)
          return res
             .status(401)
             .json({ message: 'Google authentication failed' })
       }
-
       if (!user) {
          return res
             .status(401)
@@ -250,6 +247,6 @@ export const googleAuthCallbackController = (
          secure: process.env.NODE_ENV === 'production',
       })
 
-      return res.redirect('/')
+      return res.status(200).redirect(`${process.env.CLIENT_URL}`)
    })(req, res)
 }
