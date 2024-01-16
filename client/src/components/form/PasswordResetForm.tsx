@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Router from 'next/router'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
+import { MdLockReset } from 'react-icons/md'
 
 import { useResetPasswordMutation } from '@/app/services/passwordResetApi'
 import Button from '@/components/Button'
@@ -86,7 +87,6 @@ export default function PasswordResetForm() {
                Router.push('/login')
             })
             .catch((error) => {
-               console.log(error)
                showToast(
                   error.data?.error || error.data?.message,
                   3000,
@@ -103,19 +103,19 @@ export default function PasswordResetForm() {
                src={RoginImageImage}
                alt="Login"
                className="w-full h-full object-cover rounded-s-[30px]"
-               width={500}
-               height={500}
+               width={450}
+               height={450}
             />
          </div>
 
-         <div className="mx-auto flex flex-col gap-3 p-6 lg:w-[50%] w-full lg:rounded-e-[30px] lg:rounded-s-none rounded-[30px]   bg-white border-l-2 text-black">
+         <div className="mx-auto flex flex-col justify-center  gap-3 p-6 lg:w-[50%] w-full lg:rounded-e-[30px] lg:rounded-s-none rounded-[30px]   bg-white border-l-2 text-black">
             <h1 className="text-4xl font-bold text-center">Password Reset</h1>
             <p className="text-center">
                Enter the below details to reset your password
             </p>
 
             <form
-               className="flex flex-col gap-4 text-black"
+               className="flex flex-col gap-4  text-black"
                onSubmit={handleSubmit}
             >
                <div>
@@ -233,7 +233,7 @@ export default function PasswordResetForm() {
                   )}
                </div>
                <Button onClick={() => {}} isLoading={isLoading}>
-                  Sign Up
+                  <MdLockReset className="mr-2" /> Reset Password
                </Button>
             </form>
          </div>

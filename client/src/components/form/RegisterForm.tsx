@@ -1,8 +1,8 @@
-'use client'
 import Image from 'next/image'
 import Router from 'next/router'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
+import { MdAccountCircle } from 'react-icons/md'
 
 import { useRegisterMutation } from '@/app/services/userApi'
 import Button from '@/components/Button'
@@ -244,6 +244,7 @@ function RegisterForm() {
                   )}
                </div>
                <Button isLoading={registerLoading} onClick={() => {}}>
+                  <MdAccountCircle className="inline-block mr-2" />
                   Sign Up
                </Button>
             </form>

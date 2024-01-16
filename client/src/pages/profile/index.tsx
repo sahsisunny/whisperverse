@@ -88,8 +88,8 @@ export default function ProfilePage() {
 
    return (
       <Layout title="Account - Whisper Verse">
-         <section className="flex lg:flex-row flex-col justify-center min-h-[82vh] sm:px-20 p-6 my-auto">
-            <div className="flex flex-col gap-4 w-[80%] p-4">
+         <section className="flex lg:flex-row flex-col justify-center items-center min-h-[82vh] sm:px-20 p-6 my-auto">
+            <div className="flex flex-col gap-4 w-full p-4">
                <h1 className="text-2xl font-bold text-center">
                   Account Settings
                </h1>
@@ -111,7 +111,7 @@ export default function ProfilePage() {
                      <div className="flex flex-col gap-2  w-full">
                         <p className="text-gray-200">Your reset token is:</p>
                         <p className="text-gray-200 w-full ">{resetToken}</p>
-                        <div className="flex flex-row gap-2">
+                        <div className="flex flex-wrap gap-2 w-full">
                            <Button
                               onClick={handleFetchResetToken}
                               isLoading={createResetTokenLoading}
@@ -119,7 +119,7 @@ export default function ProfilePage() {
                               <RiAiGenerate /> Show Token
                            </Button>
                            <Button onClick={handleCopyToken}>
-                              <FaCopy /> Copy
+                              <FaCopy /> Copy Token
                            </Button>
                            <Button
                               onClick={handleDeleteResetToken}

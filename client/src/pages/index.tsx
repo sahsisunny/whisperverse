@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
 import { useGetAllSecretsQuery } from '@/app/services/secretsApi'
+import GithubLabel from '@/components/Label/Github'
 import Layout from '@/components/Layout'
 import Loader from '@/components/Loader'
-import GithubLabel from '@/components/Label/Github'
 
 export default function HomePage() {
    const { data: secretsData, isLoading } = useGetAllSecretsQuery()

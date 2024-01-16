@@ -7,6 +7,7 @@ import { GiSecretBook } from 'react-icons/gi'
 import { TbLogout } from 'react-icons/tb'
 
 import { useLogoutMutation } from '@/app/services/userApi'
+import Button from '@/components/Button'
 import { useIsAuthenticated } from '@/hooks/useIsAuthenticated'
 
 import LogoImage from '../../../public/WhisperVerse.webp'
@@ -26,8 +27,8 @@ function Header() {
    }
    return (
       <header className="w-full sticky top-0  z-50  h-[10vh]">
-         <div className="w-full mx-auto flex justify-between px-4 bg-white text-black py-2 rounded-b-[35px]  ">
-            <div className="flex gap-6 ">
+         <div className="w-full mx-auto flex justify-between p-2 bg-white text-black rounded-b-[35px]  ">
+            <div className="flex gap-6  ">
                <Link
                   href="/"
                   className="flex items-center text-md font-semibold text-black"
@@ -68,12 +69,13 @@ function Header() {
             </div>
             {isLoggedin ? (
                <nav className="flex gap-4 text-sm  items-center">
-                  <button
+                  <Button
                      onClick={handleLogout}
-                     className=" py-3 px-5 hover:bg-gray-200 rounded-[10px] bg-gray-100"
+                     className="flex justify-center items-center  gap-2 py-3 px-5 hover:bg-gray-200 rounded-l-[10px] rounded-br-[35px] bg-gray-300"
                   >
+                     Logout
                      <TbLogout className="text-xl" />
-                  </button>
+                  </Button>
                </nav>
             ) : (
                <nav className="flex gap-2 text-sm text-black items-center">

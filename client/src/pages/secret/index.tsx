@@ -87,7 +87,7 @@ export default function EditSecret() {
                <div className="flex flex-col gap-4 items-center justify-center w-full">
                   <label
                      htmlFor="secret"
-                     className="block text-sm font-medium text-gray-200"
+                     className="block text-lg font-medium text-gray-200"
                   >
                      Secret Message
                   </label>

@@ -1,9 +1,10 @@
-'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import Router from 'next/router'
 import React, { useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
+import { IoMdLogIn } from 'react-icons/io'
+import { MdLockReset } from 'react-icons/md'
 
 import {
    useLoginEmailMutation,
@@ -144,8 +145,9 @@ function LoginForm() {
                </div>
                <Link
                   href="/password-reset"
-                  className="text-black hover:underline text-end"
+                  className="text-black hover:underline flex items-center justify-end"
                >
+                  <MdLockReset className="inline-block mr-2" />
                   Forgot Password?
                </Link>
                <Button
@@ -156,6 +158,7 @@ function LoginForm() {
                   }
                   onClick={() => {}}
                >
+                  <IoMdLogIn className="inline-block mr-2" />
                   <span>
                      {inputType === 'email'
                         ? 'Login with Email'

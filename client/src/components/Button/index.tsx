@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 interface ButtonProps {
    onClick: () => void
    isLoading?: boolean
+   className?: string
    children: React.ReactNode
 }
 
@@ -10,6 +11,7 @@ const Button: React.FC<ButtonProps> = ({
    onClick,
    isLoading = false,
    children,
+   className,
 }) => {
    const [isClicked, setIsClicked] = useState(false)
 
@@ -21,9 +23,12 @@ const Button: React.FC<ButtonProps> = ({
    return (
       <button
          onClick={handleClick}
-         className={`flex justify-center items-center gap-2 bg-blue-500 text-white py-2 px-4 rounded relative ${
-            isLoading ? 'opacity-50 cursor-not-allowed' : ''
-         }`}
+         className={
+            className ??
+            `flex justify-center items-center gap-2 bg-blue-500 text-white py-2 px-4 rounded relative ${
+               isLoading ? 'opacity-50 cursor-not-allowed' : ''
+            }`
+         }
          disabled={isLoading}
       >
          {children}

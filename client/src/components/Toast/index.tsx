@@ -22,7 +22,6 @@ const Toast: FC<ToastType> = ({
    onDismiss,
    type,
 }) => {
-   console.log(message)
    useEffect(() => {
       if (isVisible) {
          const timer = setTimeout(() => {
@@ -39,7 +38,7 @@ const Toast: FC<ToastType> = ({
 
    return (
       <div
-         className={`fixed top-[15%] right-4 p-4 rounded-md shadow-md z-50 ${
+         className={`fixed top-[10%] right-4 p-4 rounded-md shadow-md z-50 ${
             isVisible ? 'visible' : 'invisible'
          } ${toastClasses}`}
       >
