@@ -197,7 +197,7 @@ export const getSelfController = async (
          throw new Error('Token verification failed')
       }
 
-      const user = await getUserByUsernameModel(payload.username)
+      const user = await getUserByEmailModel(payload.email)
 
       return res.status(200).json({
          id: user.id,
