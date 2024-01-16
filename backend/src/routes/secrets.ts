@@ -10,7 +10,7 @@ import { authinticate } from '../middlewares/authinticate'
 import { createSecretValidator } from '../middlewares/secrets'
 
 export default (router: express.Router) => {
-   router.get('/secrets', authinticate, getAllSecretsController)
+   router.get('/secrets', getAllSecretsController)
    router.post(
       '/secrets',
       authinticate,
