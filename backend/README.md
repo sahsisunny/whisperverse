@@ -32,6 +32,9 @@ JWT_SECRET_KEY="your_jwt_secret_key"
 GOOGLE_CLIENT_ID="your_google_client_id"
 GOOGLE_CLIENT_SECRET="your_google_client_secret"
 GOOGLE_CALLBACK_URL="http://localhost:3001/auth/google/callback"
+CORS_ORIGIN="http://localhost:3000"
+SESSION_SECRET="your_session_secret_key"
+CLIENT_URL="http://localhost:3000"
 ```
 
 Ensure to replace the placeholder values with your actual MongoDB connection string, JWT secret key, Google OAuth client ID, and client secret.
@@ -52,6 +55,9 @@ The backend server will start on `http://localhost:3001`.
 - **GOOGLE_CLIENT_ID**: Your Google OAuth client ID.
 - **GOOGLE_CLIENT_SECRET**: Your Google OAuth client secret.
 - **GOOGLE_CALLBACK_URL**: The callback URL for Google OAuth.
+- **CORS_ORIGIN**: The origin URL for CORS.
+- **SESSION_SECRET**: A secret key for session generation.
+- **CLIENT_URL**: The URL for the frontend client.
 
 Make sure to keep your `.env` file secure and do not share it publicly.
 
