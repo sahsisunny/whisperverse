@@ -30,3 +30,8 @@ The frontend of Whisperverse is built using the following technologies:
 
 - Please see the README.md files in the `client` and `backend` folders for instructions on how to run the application locally.
 
+### Live URL
+- Frontend URL - https://whisperverse.gittrackr.engineer/
+- Backend URL - https://api.gittrackr.engineer/
+- Alternative Frontend URL - https://whisperverse.vercel.app/
+- Alternative Backend URL - https://whisperverse-api.onrender.com/
