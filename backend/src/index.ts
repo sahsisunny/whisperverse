@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import express from 'express'
-import session from 'express-session'
+import cookieSession from 'cookie-session'
 import http from 'http'
 import mongoose from 'mongoose'
 
@@ -29,14 +29,9 @@ app.use(cookieParser())
 app.use(bodyParser.json())
 
 app.use(
-   session({
+   cookieSession({
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
       secret: process.env.SESSION_SECRET,
-      resave: false,
-      saveUninitialized: true,
-      cookie: {
-         httpOnly: true,
-         secure: process.env.NODE_ENV === 'production',
-      },
    }),
 )
 
