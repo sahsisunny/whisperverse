@@ -37,19 +37,6 @@ export const verifyJWT = async function (token: string) {
    }
 }
 
-export const generateRefreshJWT = async function (
-   payload: IUserPayloadForToken,
-) {
-   try {
-      return await jwt.sign(
-         payload,
-         process.env.JWT_REFRESH_SECRET_KEY as string,
-      )
-   } catch (error) {
-      throw new Error(error)
-   }
-}
-
 export const generateResetToken = async function () {
    try {
       const randomBytes = await crypto.randomBytes(5)
